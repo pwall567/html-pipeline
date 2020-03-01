@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>net.pwall.html</groupId>
+  <artifactId>html-pipeline</artifactId>
+  <version>0.1</version>
+  <name>Simple pipeline parser for HTML</name>
+  <description>
+    Simple parser for HTML, using the pipelines library.
+    This is not intended to be a strict parser of HTML5; the main planned use is to help with "screen-scraping" of HTML
+    websites.
+    It may also find use as a tool for testing HTML generation.
+  </description>
+  <packaging>jar</packaging>
+  <url>https://github.com/pwall567/html-pipeline</url>
+
+  <parent>
+    <groupId>net.pwall.maven</groupId>
+    <artifactId>maven-kotlin</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com/pwall567/html-pipeline.git</connection>
+    <url>https://github.com/pwall567/html-pipeline</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>pwall@pwall.net</id>
+      <name>Peter Wall</name>
+      <email>pwall@pwall.net</email>
+      <url>https://pwall.net</url>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>Australia/Sydney</timezone>
+    </developer>
+  </developers>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jcenter</id>
+      <name>JCenter</name>
+      <url>https://jcenter.bintray.com/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.pwall.util</groupId>
+      <artifactId>pipelines</artifactId>
+      <version>0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>net.pwall.html</groupId>
+      <artifactId>htmlutil</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.pwall.dom</groupId>
+      <artifactId>dom-kotlin</artifactId>
+      <version>0.1.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jetbrains.dokka</groupId>
+        <artifactId>dokka-maven-plugin</artifactId>
+        <configuration>
+          <sourceDirectories>
+            <dir>src/main/kotlin</dir>
+          </sourceDirectories>
+          <externalDocumentationLinks>
+            <link>
+              <url>https://pwall.net/oss/jsonutil/</url>
+            </link>
+          </externalDocumentationLinks>
+          <perPackageOptions>
+            <packageOptions>
+              <prefix>net.pwall.json.annotation</prefix>
+              <suppress>true</suppress>
+              <!-- bug in handling annotation classes? -->
+            </packageOptions>
+          </perPackageOptions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
